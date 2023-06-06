@@ -61,13 +61,11 @@
   .Auth-form {
     width: 100%;
   }
-}
-
 .Auth-form-content {
   padding-left: 12%;
   padding-right: 12%;
 }
-
+}
 .Auth-form-title {
   text-align: center;
   margin-bottom: 1em;
