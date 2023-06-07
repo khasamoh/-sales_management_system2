@@ -100,3 +100,17 @@ input{
 .frm_product label{
   color: rgba(6, 83, 97, 0.842);
 }
+.no-padding{
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.pad-head{
+  padding-left: 25px !important;
+}
+.content1{
+  padding-left: 50px !important;
+}
+.content{
+  width: 100%;
+}

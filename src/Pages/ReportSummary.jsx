@@ -14,20 +14,21 @@ const ReportSummary = () => {
     <>
     <div>
       <TopNavBar/>
-      
     </div>
     <Container fluid>
     <Row>
-      <Col sm={3} style={{padding:0}}>
+      <Col sm={2} className='no-padding'>
       <Sidebar1/>
       </Col>
-      <Col sm={9}style={{padding:0}}>
+      <Col sm={10} className='no-padding content1'>
         <Row className='listhead'>
-          <Col sm={10}>
-          <h2>Report Summury of Sales</h2>
+          <Col sm={10} className='pad-head'>
+          <h2>Sales Report Summary</h2>
           </Col>
-          <Col sm={2}>
+          <Col sm={2} className='no-padding'>
           <CDBBtn color="success" onClick={handleOpen} circle outline>Add New</CDBBtn>
+          </Col>
+        </Row>
           <Modal open={open} size={'xs'} onClose={handleClose}>
         <Modal.Header>
           <Modal.Title><h3>Register New Product</h3></Modal.Title>
@@ -76,10 +77,8 @@ const ReportSummary = () => {
           </form>
         </Modal.Body>
       </Modal>
-          </Col>
           
-        </Row>
-      <div className='content'>
+      <div className='content no-padding'>
         <Dtable/>
       </div>
       </Col>

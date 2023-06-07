@@ -14,72 +14,86 @@ export default function User() {
     <>
     <div>
       <TopNavBar/>
-      
     </div>
     <Container fluid>
     <Row>
-      <Col sm={3} style={{padding:0}}>
+      <Col sm={2} className='no-padding'>
       <Sidebar1/>
       </Col>
-      <Col sm={9}style={{padding:0}}>
+      <Col sm={10} className='no-padding content1'>
         <Row className='listhead'>
-          <Col sm={10}>
+          <Col sm={10} className='pad-head'>
           <h2>List Of Users</h2>
           </Col>
-          <Col sm={2}>
+          <Col sm={2} className='no-padding'>
           <CDBBtn color="success" onClick={handleOpen} circle outline>Add New</CDBBtn>
+          </Col>
+        </Row>
           <Modal open={open} size={'xs'} onClose={handleClose}>
         <Modal.Header>
-          <Modal.Title><h3>Register New Product</h3></Modal.Title>
+          <Modal.Title><h3>Register New User</h3></Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="frm_product">
             <div className="">
               <div className="form-group mt-2">
-                <label>Product Name</label>
+                <label>First Name</label>
                 <input
                   type="text"
                   className="form-control mt-1"
-                  placeholder="Enter product name"
+                  placeholder="Enter first name"
                 />
               </div>
               <div className="form-group mt-2">
-                <label>Quantity</label>
+                <label>Last Name</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control mt-1"
-                  placeholder="Enter Quantity"
+                  placeholder="Enter last name"
                 />
               </div>
               <div className="form-group mt-2">
-                <label>Buy Price</label>
+                <label>Email</label>
                 <input
-                  type="number"
+                  type="email"
                   className="form-control mt-1"
-                  placeholder="Enter Buy Price"
+                  placeholder="Enter email"
                 />
               </div>
               <div className="form-group mt-2">
-                <label>Sale Price</label>
+                <label>Username</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control mt-1"
-                  placeholder="Enter Sale Price"
+                  placeholder="Enter username"
                 />
+              </div>
+              <div className="form-group mt-2">
+                <label>Password</label>
+                <input
+                  type="password"
+                  className="form-control mt-1"
+                  placeholder="Enter password"
+                />
+              </div>
+              <div className="form-group mt-2">
+                <label>Privilage</label>
+                <select className="form-control mt-1">
+                  <option value={'Administrator'}>Administrator</option>
+                  <option value={'Saller'}>Saller</option>
+                </select>
               </div>
               <div className="d-grid gap-2 mt-3">
                 <button type="submit" className="btn btn-primary" style={{width:100,float:'right',marginLeft:255}}>
-                  Add
+                  Register
                 </button>
               </div>
             </div>
           </form>
         </Modal.Body>
       </Modal>
-          </Col>
           
-        </Row>
-      <div className='content'>
+      <div className='content no-padding'>
         <Dtable/>
       </div>
       </Col>
