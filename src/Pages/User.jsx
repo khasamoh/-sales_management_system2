@@ -2,7 +2,6 @@ import React, { useState }from 'react'
 import TopNavBar from '../Components/TopNavBar'
 import Sidebar1 from '../Components/Sidebar1'
 import { Container, Row, Col } from 'react-bootstrap';
-import Dtable from '../Components/Dtable';
 import { CDBBtn, CDBContainer } from "cdbreact";
 import { Modal, Button, ButtonToolbar, Placeholder } from 'rsuite';
 import UserList from '../Components/userlist';
@@ -23,18 +22,27 @@ export default function User() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const userData = {
+      first_name: fname,
+      last_name: lname,
+      email: email,
+      username: username,
+      password: password,
+      privilege: privilege,
+    };
 
-    axios.post('http://127.0.0.1:8000/users/create/', { fname, lname, email, username, password, privilege })
+    axios.post('http://127.0.0.1:8000/users/create/', userData)
       .then(response => {
         console.log(response.data);
-        // Optionally, update the user list in the parent component
+        window.location.reload();
       })
       .catch(error => {
         console.error(error);
       });
 
+    // Reset the form after submitting
     setFname('');setLname('');setEmail('');setUsername('');setPassword('');setPrivilege('');
-  }
+  };
   return (
     <>
     <div>
@@ -65,7 +73,9 @@ export default function User() {
                 <label>First Name</label>
                 <input
                   type="text"
-                  value={fname} onChange={(e) => setFname(e.target.value)}
+                  value={fname} 
+                  onChange={(e) => setFname(e.target.value)}
+                  required
                   className="form-control mt-1"
                   placeholder="Enter first name"
                 />
@@ -74,7 +84,9 @@ export default function User() {
                 <label>Last Name</label>
                 <input
                   type="text"
-                  value={lname} onChange={(e) => setLname(e.target.value)}
+                  value={lname} 
+                  onChange={(e) => setLname(e.target.value)}
+                  required
                   className="form-control mt-1"
                   placeholder="Enter last name"
                 />
@@ -83,7 +95,9 @@ export default function User() {
                 <label>Email</label>
                 <input
                   type="email"
-                  value={email} onChange={(e) => setEmail(e.target.value)}
+                  value={email} 
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                   className="form-control mt-1"
                   placeholder="Enter email"
                 />
@@ -92,7 +106,9 @@ export default function User() {
                 <label>Username</label>
                 <input
                   type="text"
-                  value={username} onChange={(e) => setUsername(e.target.value)}
+                  value={username} 
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
                   className="form-control mt-1"
                   placeholder="Enter username"
                 />
@@ -101,7 +117,9 @@ export default function User() {
                 <label>Password</label>
                 <input
                   type="password"
-                  value={password} onChange={(e) => setPassword(e.target.value)}
+                  value={password} 
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                   className="form-control mt-1"
                   placeholder="Enter password"
                 />

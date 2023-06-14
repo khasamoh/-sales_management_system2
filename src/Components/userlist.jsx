@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } from 'cdbreact';
 import axios from 'axios';
 
 const UserList = () => {
@@ -13,35 +14,43 @@ const UserList = () => {
         console.error(error);
       });
   }, []);
-
   return (
-    <div>
-      <h2>User List</h2>
-      <table>
-        <thead>
+    <CDBContainer>
+      <CDBTable striped>
+        <CDBTableHeader>
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
             <th>Username</th>
             <th>Privilage</th>
+            <th>Action</th>
           </tr>
-        </thead>
-        <tbody>
-          {users.map(user => (
+        </CDBTableHeader>
+        <CDBTableBody>
+          {users.length > 0 ? (
+            users.map(user => (
             <tr key={user.user_id}>
               <td>{user.first_name}</td>
               <td>{user.last_name}</td>
               <td>{user.email}</td>
               <td>{user.username}</td>
-              <td>{user.password}</td>
               <td>{user.privilege}</td>
+              <td>
+                <button onClick={/*e => </td>handleSubmit(user.user_id)*/ user.user_id} className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
+                <button onClick={/*e => </td>handleSubmit(user.user_id)*/ user.user_id} className='btn btn-sm btn-danger ms-1 btn-succes'>Delete</button>
+              </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          ))
+          ) : (
+              <tr>
+                <td colSpan="5">No data available</td>
+              </tr>
+            )
+          }
+        </CDBTableBody>
+      </CDBTable>
+    </CDBContainer>
   );
 };
-
 export default UserList;
