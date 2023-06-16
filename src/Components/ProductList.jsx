@@ -14,6 +14,7 @@ const ProductList = () => {
         console.error(error);
       });
   }, []);
+  
   const handleDelete = async (pro_id) => {
     const confirmDelete = window.confirm('Are you sure you want to delete Product?');
     if (confirmDelete) {

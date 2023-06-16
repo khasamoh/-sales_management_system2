@@ -14,6 +14,19 @@ const UserList = () => {
         console.error(error);
       });
   }, []);
+  const handleDelete = async (user_id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete user?');
+    if (confirmDelete) {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/users/delete/${user_id}/`);
+      console.log('User deleted successfully');
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+      // Handle deletion error
+    }
+  }
+  };
   return (
     <CDBContainer>
       <CDBTable striped>
@@ -38,7 +51,7 @@ const UserList = () => {
               <td>{user.privilege}</td>
               <td>
                 <button onClick={/*e => </td>handleSubmit(user.user_id)*/ user.user_id} className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
-                <button onClick={/*e => </td>handleSubmit(user.user_id)*/ user.user_id} className='btn btn-sm btn-danger ms-1 btn-succes'>Delete</button>
+                <button onClick={() => handleDelete(user.user_id)} className='btn btn-sm btn-danger ms-1 btn-succes'>Delete</button>
               </td>
             </tr>
           ))

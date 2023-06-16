@@ -14,6 +14,20 @@ const CustomerList = () => {
         console.error(error);
       });
   }, []);
+
+  const handleDelete = async (customer_id) => {
+    const confirmDelete = window.confirm('Are you sure you want to delete Customer?');
+    if (confirmDelete) {
+    try {
+      await axios.delete(`http://127.0.0.1:8000/customers/delete/${customer_id}/`);
+      console.log('Customer deleted successfully');
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+      // Handle deletion error
+    }
+  }
+  };
   return (
     <CDBContainer>
       <CDBTable striped>
@@ -36,7 +50,7 @@ const CustomerList = () => {
               <td>{customer.mobile}</td>
               <td>
                 <button onClick={/*e => </td>handleSubmit(customer.customer_id)*/ customer.customer_id} className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
-                <button onClick={/*e => </td>handleSubmit(customer.customer_id)*/ customer.customer_id} className='btn btn-sm btn-danger ms-1 btn-succes'>Delete</button>
+                <button onClick={() => handleDelete(customer.customer_id)} className='btn btn-sm btn-danger ms-1 btn-succes'>Delete</button>
               </td>
             </tr>
           ))
