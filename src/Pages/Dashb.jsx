@@ -2,15 +2,12 @@ import React from 'react'
 import TopNavBar from '../Components/TopNavBar'
 import Sidebar1 from '../Components/Sidebar1'
 import { Container, Row, Col } from 'react-bootstrap';
-
-import Dtable from '../Components/Dtable';
-import { CDBBtn, CDBContainer } from "cdbreact";
-import { Modal, Button, ButtonToolbar, Placeholder } from 'rsuite';
+import SalesList from '../Components/SalesList';
+import { NavLink } from 'react-router-dom';
+import { CDBCard, CDBCardBody, CDBCardTitle, CDBCardText, CDBIcon, CDBContainer } from "cdbreact";
 
 const Dashb = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+ 
   return (
     <>
     <div>
@@ -23,62 +20,55 @@ const Dashb = () => {
       </Col>
       <Col sm={10} className='no-padding content1'>
         <Row className='listhead'>
-          <Col sm={12} className='pad-head'>
-          <h2>Welcome</h2>
+          <Col sm={4}>
+          <div className='btn btn-warning card'>
+            <NavLink exact to="/user" style={{color:"#333",textDecoration:'none'}} activeClassName="activeClicked">
+              <h3>Total Users</h3>
+              <h2>8</h2>
+            </NavLink>
+          </div>
+          </Col>
+          <Col sm={4} >
+          <div className='btn btn-info card'>
+            <NavLink exact to="/product" style={{color:"#333",textDecoration:'none'}} activeClassName="activeClicked">
+              <h3>Total Products</h3>
+              <h2>25</h2>
+            </NavLink>
+          </div>
+          </Col>
+          <Col sm={4} >
+          <div className='btn btn-success card'>
+            
+            <NavLink exact to="/customer" style={{color:"#333",textDecoration:'none'}} activeClassName="activeClicked">
+              <h3>Total Customers</h3>
+              <h2>4</h2>
+            </NavLink>
+          </div>
           </Col>
         </Row>
-          <Modal open={open} size={'xs'} onClose={handleClose}>
-        <Modal.Header>
-          <Modal.Title><h3>Register New Product</h3></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form className="frm_product">
-            <div className="">
-              <div className="form-group mt-2">
-                <label>Product Name</label>
-                <input
-                  type="text"
-                  className="form-control mt-1"
-                  placeholder="Enter product name"
-                />
-              </div>
-              <div className="form-group mt-2">
-                <label>Quantity</label>
-                <input
-                  type="number"
-                  className="form-control mt-1"
-                  placeholder="Enter Quantity"
-                />
-              </div>
-              <div className="form-group mt-2">
-                <label>Buy Price</label>
-                <input
-                  type="number"
-                  className="form-control mt-1"
-                  placeholder="Enter Buy Price"
-                />
-              </div>
-              <div className="form-group mt-2">
-                <label>Sale Price</label>
-                <input
-                  type="number"
-                  className="form-control mt-1"
-                  placeholder="Enter Sale Price"
-                />
-              </div>
-              <div className="d-grid gap-2 mt-3">
-                <button type="submit" className="btn btn-primary" style={{width:100,float:'right',marginLeft:255}}>
-                  Add
-                </button>
-              </div>
-            </div>
-          </form>
-        </Modal.Body>
-      </Modal>
-          
-      <div className='content no-padding'>
-        <Dtable/>
-      </div>
+        <hr/>
+        <Row className='listhead'>
+          <Col sm={8}>
+          <div className='card2'>
+            <h3>Today Sales</h3>
+            <hr/>
+            <SalesList/>
+          </div>
+          </Col>
+          <Col sm={4} >
+          <div className='card2'>
+            <h3>Low Stock Level </h3>
+            <hr/>
+            <ul>
+              <li>T-Shirt</li>
+              <li>Tablera</li>
+              <li>Soup</li>
+              <li>Hagam</li>
+              <li>Sapralo</li>
+            </ul>
+          </div>
+          </Col>
+        </Row>
       </Col>
     </Row>
   </Container>

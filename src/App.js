@@ -11,7 +11,6 @@ import ReportSummary from './Pages/ReportSummary';
 import Login from './Pages/Login';
 import TopNavBar from './Components/TopNavBar';
 import Sidebar1 from './Components/Sidebar1';
-import Dtable from './Components/Dtable';
 
 function App() {
   return (
@@ -29,7 +28,6 @@ function App() {
         <Route path='/nav' element={<TopNavBar/>}/>
         <Route path='/sidebar' element={<Sidebar/>}/>
         <Route path='/sidebar1' element={<Sidebar1/>}/>
-        <Route path='/table' element={<Dtable/>}/>
       </Routes>
     </BrowserRouter>
     </>
