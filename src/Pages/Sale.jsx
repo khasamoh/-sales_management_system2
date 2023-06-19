@@ -8,12 +8,12 @@ import SalesList from '../Components/SalesList';
 const Sale = () => {
   const [products, setProduct] = useState([]);
   //insert properties
-  const [quantity, setQuantity] = useState('');
-  const [datetime, setDatetime] = useState('');
-  const [pay_status, setSalepay_status] = useState('');
-  const [userId, setUserId] = useState('');
   const [productId, setProductId] = useState('');
-  const [customerId, setCustomerId] = useState('');
+  const [quantity, setQuantity] = useState('');
+  // const [datetime, setDatetime] = useState('');
+  // const [pay_status, setSalepay_status] = useState('');
+  // const [userId, setUserId] = useState('');
+  // const [customerId, setCustomerId] = useState('');
 
   // Create a new Date object for the current date
 const currentDate = new Date();
@@ -30,9 +30,9 @@ const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toStri
       quantity: quantity,
       datetime: formattedDate,
       pay_status: 'Paid',
-      user: userId,
+      user: 1,
       product: productId,
-      customer: customerId,
+      customer: 2,
     };
 console.log("nipoo");
     axios.post('http://127.0.0.1:8000/sales/create/', saleData)
@@ -98,18 +98,7 @@ console.log("nipoo");
                     placeholder="Enter Quantity"
                     required
                   />
-                   <input
-                    type="hidden"
-                    className="form-control mt-1"
-                    value={'1'}
-                    onChange={(e) => setUserId(e.target.value)}
-                  />
-                   <input
-                    type="hidden"
-                    className="form-control mt-1"
-                    value={'2'}
-                    onChange={(e) => setCustomerId(e.target.value)}
-                  />
+                   
                 </div>
                 <div className="form-group mt-2 sf">
                 <button type="submit" className="btn btn-primary" style={{width:100,}}>
