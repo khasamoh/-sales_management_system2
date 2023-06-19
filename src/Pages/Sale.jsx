@@ -1,15 +1,63 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import TopNavBar from '../Components/TopNavBar'
 import Sidebar1 from '../Components/Sidebar1'
 import { Container, Row, Col } from 'react-bootstrap';
-import Dtable from '../Components/Dtable';
-import { CDBBtn, CDBContainer } from "cdbreact";
-import { Modal, Button, ButtonToolbar, Placeholder } from 'rsuite';
+import axios from 'axios';
+import SalesList from '../Components/SalesList';
 
 const Sale = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [products, setProduct] = useState([]);
+  //insert properties
+  const [quantity, setQuantity] = useState('');
+  const [datetime, setDatetime] = useState('');
+  const [pay_status, setSalepay_status] = useState('');
+  const [userId, setUserId] = useState('');
+  const [productId, setProductId] = useState('');
+  const [customerId, setCustomerId] = useState('');
+
+  // Create a new Date object for the current date
+const currentDate = new Date();
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth() + 1; // Months are zero-indexed, so add 1
+const day = currentDate.getDate();
+
+// Format the date as needed (e.g., "YYYY-MM-DD")
+const formattedDate = `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const saleData = {
+      quantity: quantity,
+      datetime: formattedDate,
+      pay_status: 'Paid',
+      user: userId,
+      product: productId,
+      customer: customerId,
+    };
+console.log("nipoo");
+    axios.post('http://127.0.0.1:8000/sales/create/', saleData)
+      .then(response => {
+        console.log(response.data);
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+    // Reset the form after submitting
+    setQuantity('');
+  };
+
+//for dropdown in selecting product for sales
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/products/')
+      .then(response => {
+        setProduct(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
   return (
     <>
     <div>
@@ -21,65 +69,61 @@ const Sale = () => {
       <Sidebar1/>
       </Col>
       <Col sm={10} className='no-padding content1'>
+
         <Row className='listhead'>
-          <Col sm={10} className='pad-head'>
-          <h2>Today Sales</h2>
-          </Col>
-          <Col sm={2} className='no-padding'>
-          <CDBBtn color="success" onClick={handleOpen} circle outline>Add New</CDBBtn>
+          <Col sm={12} className='pad-head'>
+          <h2>Make Sales</h2>
+          <form onSubmit={handleSubmit} className="frm_product">
+              <div className="sale_div">
+                <div className="form-group mt-2 sf">
+                  <label>Choose Product</label>
+                  <select className="form-control mt-1" value={productId} onChange={(e) => setProductId(e.target.value)}>
+                    {products.length > 0 ? (
+                      products.map(product => (
+                        <option value={product.pro_id}>{product.pro_name}</option>
+                      ))
+                      ) : (
+                          <option colSpan="5">No data available</option>
+                        )
+                      }
+                  </select>
+                </div>
+                <div className="form-group mt-2 sf">
+                  <label>Quantity</label>
+                  <input
+                    type="number"
+                    className="form-control mt-1"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                    placeholder="Enter Quantity"
+                    required
+                  />
+                   <input
+                    type="hidden"
+                    className="form-control mt-1"
+                    value={'1'}
+                    onChange={(e) => setUserId(e.target.value)}
+                  />
+                   <input
+                    type="hidden"
+                    className="form-control mt-1"
+                    value={'2'}
+                    onChange={(e) => setCustomerId(e.target.value)}
+                  />
+                </div>
+                <div className="form-group mt-2 sf">
+                <button type="submit" className="btn btn-primary" style={{width:100,}}>
+                    Sale
+                  </button>
+                </div>
+              </div>
+            </form>
+            <hr/>
+            <h2>Today Sales</h2>
           </Col>
         </Row>
-          <Modal open={open} size={'xs'} onClose={handleClose}>
-        <Modal.Header>
-          <Modal.Title><h3>Register New Product</h3></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form className="frm_product">
-            <div className="">
-              <div className="form-group mt-2">
-                <label>Product Name</label>
-                <input
-                  type="text"
-                  className="form-control mt-1"
-                  placeholder="Enter product name"
-                />
-              </div>
-              <div className="form-group mt-2">
-                <label>Quantity</label>
-                <input
-                  type="number"
-                  className="form-control mt-1"
-                  placeholder="Enter Quantity"
-                />
-              </div>
-              <div className="form-group mt-2">
-                <label>Buy Price</label>
-                <input
-                  type="number"
-                  className="form-control mt-1"
-                  placeholder="Enter Buy Price"
-                />
-              </div>
-              <div className="form-group mt-2">
-                <label>Sale Price</label>
-                <input
-                  type="number"
-                  className="form-control mt-1"
-                  placeholder="Enter Sale Price"
-                />
-              </div>
-              <div className="d-grid gap-2 mt-3">
-                <button type="submit" className="btn btn-primary" style={{width:100,float:'right',marginLeft:255}}>
-                  Add
-                </button>
-              </div>
-            </div>
-          </form>
-        </Modal.Body>
-      </Modal>
-          
       <div className='content no-padding'>
-        <Dtable/>
+        <SalesList/>
       </div>
       </Col>
     </Row>
