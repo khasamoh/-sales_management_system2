@@ -1,6 +1,7 @@
 import React,{ useState } from 'react'
 import logo from '../logo.png'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login3 = (props) => {
   const [username, setUsername] = useState('');
@@ -34,27 +35,79 @@ const Login3 = (props) => {
   //     });
   // };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   fetch('http://127.0.0.1:8000/login/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ username, password }),
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data); // Log the response data for debugging
+  //     })
+  //     .catch((error) => {
+  //       console.error('Error:', error);
+  //     });
+  // };
+  
+  
+
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   const response = await fetch('http://localhost:8000/login/', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({username, password})
+  //   });
+  //   const data = await response.json();
+  //   console.log(data); // Check the response data in the console
+  //   setMessage(data.message);
+  // };
+
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   const response = await axios.post('http://localhost:8000/login/', {
+  //     username, password});
+  //     // eslint-disable-next-line no-undef
+  //     if(is_verified === true){
+  //       if(response.data.message === 'Valid login'){
+  //         Navigate('/Dashboard')
+  //       }
+  //     }else{
+  //       console.log('Invalid user')
+  //     }
+      
+  //   const data = await response.json();
+  //   console.log(data); // Check the response data in the console
+   
+  // };
+  const handleLogin = async (e) => {
     e.preventDefault();
-    fetch('http://127.0.0.1:8000/login/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Log the response data for debugging
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+    try {
+      const response = await axios.post('http://localhost:8000/login/', {
+        username,
+        password,
       });
+  
+      const responseData = response.data;
+      if (responseData.message === 'Valid login') {
+        Navigate('/Dashboard');
+      } else {
+        console.log('Invalid user');
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
   
   return (
     <div className="Auth-form-container">
-    <form className="Auth-form" onSubmit={handleSubmit}>
+    <form onSubmit={handleLogin}>
       <div className="Auth-form-content">
         <center><img alt='logo' src={logo} style={{width: 200,}}/></center>
         <div className="form-group mt-3">
