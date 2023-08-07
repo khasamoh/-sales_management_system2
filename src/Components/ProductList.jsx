@@ -50,7 +50,7 @@ const ProductList = () => {
               <td>{product.buy_price}</td>
               <td>{product.sale_price}</td>
               <td>
-                <button onClick={/*e => </td>handleSubmit(product.pro_id)*/ product.pro_id} className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
+                <button onClick={/*e => </td>handleSubmit(product.pro_id)*/ console.log('Comming soon')} className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
                 <button onClick={() => handleDelete(product.pro_id)} className='btn btn-sm btn-danger ms-1 btn-succes'>Delete</button>
               </td>
             </tr>

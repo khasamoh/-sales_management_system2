@@ -2,9 +2,12 @@ import React from 'react'
 import TopNavBar from '../Components/TopNavBar'
 import Sidebar1 from '../Components/Sidebar1'
 import { Container, Row, Col } from 'react-bootstrap';
-import SalesList from '../Components/SalesList';
 import { NavLink } from 'react-router-dom';
 import { CDBCard, CDBCardBody, CDBCardTitle, CDBCardText, CDBIcon, CDBContainer } from "cdbreact";
+import TodaySalesList from '../Components/TodaySalesList'
+import UserCount from '../Components/UserCount'
+import ProductCount from '../Components/ProductCount'
+import CustomerCount from '../Components/CustomerCount'
 
 const Dashb = () => {
  
@@ -24,7 +27,7 @@ const Dashb = () => {
           <div className='btn btn-warning card'>
             <NavLink exact to="/user" style={{color:"#333",textDecoration:'none'}} activeClassName="activeClicked">
               <h3>Total Users</h3>
-              <h2>8</h2>
+              <UserCount/>
             </NavLink>
           </div>
           </Col>
@@ -32,7 +35,7 @@ const Dashb = () => {
           <div className='btn btn-info card'>
             <NavLink exact to="/product" style={{color:"#333",textDecoration:'none'}} activeClassName="activeClicked">
               <h3>Total Products</h3>
-              <h2>25</h2>
+              <ProductCount/>
             </NavLink>
           </div>
           </Col>
@@ -41,7 +44,7 @@ const Dashb = () => {
             
             <NavLink exact to="/customer" style={{color:"#333",textDecoration:'none'}} activeClassName="activeClicked">
               <h3>Total Customers</h3>
-              <h2>4</h2>
+              <CustomerCount/>
             </NavLink>
           </div>
           </Col>
@@ -52,7 +55,7 @@ const Dashb = () => {
           <div className='card2'>
             <h3>Today Sales</h3>
             <hr/>
-            <SalesList/>
+            <TodaySalesList/>
           </div>
           </Col>
           <Col sm={4} >

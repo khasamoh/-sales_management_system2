@@ -49,8 +49,8 @@ const CustomerList = () => {
               <td>{customer.address}</td>
               <td>{customer.mobile}</td>
               <td>
-                <button onClick={/*e => </td>handleSubmit(customer.customer_id)*/ customer.customer_id} className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
-                <button onClick={/*e => </td>handleSubmit(customer.customer_id)*/ customer.customer_id} className='btn btn-sm btn-info ms-1 btn-succes'>Loan Products Info</button>
+                <button onClick={/*e => </td>handleSubmit(customer.customer_id)*/ console.log('Comming soon')} className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
+                <button onClick={/*e => </td>handleSubmit(customer.customer_id)*/ console.log('Comming soon')} className='btn btn-sm btn-info ms-1 btn-succes'>Loan Products Info</button>
                 <button onClick={() => handleDelete(customer.customer_id)} className='btn btn-sm btn-danger ms-1 btn-succes'>Delete</button>
               </td>
             </tr>

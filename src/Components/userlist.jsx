@@ -50,7 +50,7 @@ const UserList = () => {
               <td>{user.username}</td>
               <td>{user.privilege}</td>
               <td>
-                <button onClick={/*e => </td>handleSubmit(user.user_id)*/ user.user_id} className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
+                <button onClick={/*e => </td>handleSubmit(user.user_id)*/ console.log('Comming soon') } className='btn btn-sm btn-success ms-1 btn-succes'>Edit</button>
                 <button onClick={() => handleDelete(user.user_id)} className='btn btn-sm btn-danger ms-1 btn-succes'>Delete</button>
               </td>
             </tr>

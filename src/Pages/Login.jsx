@@ -130,9 +130,9 @@ const Login3 = (props) => {
         </div>
         <div className="d-grid gap-2 mt-3">
           <button type="submit" href="/Dashboard" className="btn btn-primary">
-          {/* <NavLink exact to="/Dashboard" style={{color:"white",textDecoration:'none'}} activeClassName="activeClicked">
+          <NavLink exact to="/Dashboard" style={{color:"white",textDecoration:'none'}} activeClassName="activeClicked">
               LOGIN
-            </NavLink> */}
+            </NavLink>
           </button>
         </div>
         <p className="forgot-password text-right mt-2">

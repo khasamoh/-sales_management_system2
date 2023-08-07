@@ -3,7 +3,7 @@ import TopNavBar from '../Components/TopNavBar'
 import Sidebar1 from '../Components/Sidebar1'
 import { Container, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
-import SalesList from '../Components/SalesList';
+import TodaySalesList from '../Components/TodaySalesList';
 
 const Sale = () => {
   const [products, setProduct] = useState([]);
@@ -112,7 +112,7 @@ console.log("nipoo");
           </Col>
         </Row>
       <div className='content no-padding'>
-        <SalesList/>
+        <TodaySalesList/>
       </div>
       </Col>
     </Row>

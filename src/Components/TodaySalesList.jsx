@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CDBTable, CDBTableHeader, CDBTableBody, CDBContainer } from 'cdbreact';
 import axios from 'axios';
 
-const SalesList = () => {
+const TodaySalesList = () => {
   const [sales, setSales] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const SalesList = () => {
 
   const fetchOrderData = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:8000/sales/');
+      const response = await axios.get('http://127.0.0.1:8000/todaysales/');
       const data = response.data;
       setSales(data.sold_data);
     } catch (error) {
@@ -70,4 +70,4 @@ const SalesList = () => {
     </CDBContainer>
   );
 };
-export default SalesList;
+export default TodaySalesList;
